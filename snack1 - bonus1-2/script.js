@@ -1,3 +1,4 @@
+
 async function getChefBirthday(id) {
 
     let data;
@@ -22,7 +23,11 @@ async function getChefBirthday(id) {
 
         birthday = await responseJson.birthDate;
 
-        return birthday
+        if (birthday) {
+            return dayjs(birthday).format('DD/MM/YYYY');
+        } else {
+            throw new Error("Data di nascita dello chef non trovata.");
+        }
 
     } catch (error) {
         console.error(error);
